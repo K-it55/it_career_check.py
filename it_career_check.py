@@ -69,6 +69,7 @@ if submitted:
         st.markdown(f"**{i+1}. {job}**（適性スコア: {score}）")
 
     st.bar_chart({k: v for k, v in sorted_scores})
+    
 # -----------------------------
 # 職種ごとの解説とロードマップ
 # -----------------------------
@@ -85,6 +86,9 @@ roadmaps = {
 
 if submitted:
     st.subheader("📌 職種解説とロードマップ")
+
     for i, (job, score) in enumerate(sorted_scores[:3]):
         st.markdown(f"### {i+1}. {job}")
-        st.write(roadmaps[job])
+
+        roadmap_text = roadmaps.get(job, "ロードマップ情報がありません。")
+        st.write(roadmap_text)
